@@ -12,38 +12,51 @@ int main()
 	double greatest = 0;
 	double mean = 0;
 
-	while (cin >> distance)
+	while (cin >> distance && distance != 555)
 	{
 		if (smallest == 0 && greatest == 0)
 		{
 			smallest = distance;
 			greatest = distance;
-			distances.push_back(distance * 100);
-			cout << "The distance " << smallest << " m is the smallest so far\n";
-			cout << "The distance " << greatest << " m is greatest so far\n";
+			distances.push_back(distance);
+			cout << "The distance " << smallest << " km is the smallest so far\n";
+			cout << "The distance " << greatest << " km is greatest so far\n";
 		}
 		else if (distance < smallest)
 		{
 			smallest = distance;
-			distances.push_back(distance * 100);
-			cout << "The distance " << smallest << " m is the smallest so far\n";
-			cout << "The distance " << greatest << " m is still greatest so far\n";
+			distances.push_back(distance);
+			cout << "The distance " << smallest << " km is the smallest so far\n";
+			cout << "The distance " << greatest << " km is still greatest so far\n";
 		}
 		else if (distance > greatest)
 		{
 			greatest = distance;
-			distances.push_back(distance * 100);
-			cout << "The distance " << smallest << " m is still the smallest so far\n";
-			cout << "The distance " << greatest << " m is greatest so far\n";
+			distances.push_back(distance);
+			cout << "The distance " << smallest << " km is still the smallest so far\n";
+			cout << "The distance " << greatest << " km is greatest so far\n";
 		}
 		else
 		{
-			distances.push_back(distance * 100);
-			cout << "The distance " << smallest << " m is still the smallest so far\n";
-			cout << "The distance " << greatest << " m is still the greatest so far\n";
+			distances.push_back(distance);
+			cout << "The distance " << smallest << " km is still the smallest so far\n";
+			cout << "The distance " << greatest << " km is still the greatest so far\n";
+			double sum = 0;
+			for (auto x : distances) sum += x;		
 		}
 
 		total += distance;
-		cout << "The sum of the distances written so far is " << total << " m\n";
+		cout << "The sum of the distances written so far is " << total << " km\n";
+		//sort(distance);
+		sort(distances.begin(), distances.end());
+		double median{ 0 };
+		if (distances.size() % 2 == 0) {
+			median = (distances[(distances.size() - 1) / 2] + distances[distances.size() / 2])/2; }
+		else {
+			median = distances[distances.size() / 2]; }
+		//
+		cout << " Median distance: " << median << "\n";
+		
+
 	}
 }
