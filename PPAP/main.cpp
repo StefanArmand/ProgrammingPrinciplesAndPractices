@@ -23,6 +23,19 @@ bool checkerror(string name, vector<string> names)
 	return retvalue;
 }
 
+int find_name(string name, vector<string> names)
+{
+	int indx = -1;
+	size_t i = 0;
+
+	while ((indx == -1) && (i < names.size())) {
+		if (names[i] == name) indx = i;
+		++i;
+	}
+
+	return indx;
+}
+
 int main()
 {
 	cout << "Please write a name folowed by a score. Write NoName 0 to exit.\n";
@@ -45,7 +58,17 @@ int main()
 		for (int i = 0; i < names.size(); i++) {
 			cout << names[i] << " " << scores[i] << "\n";
 		}
+	}
 
+	int indx = 0;
+	cout << "Type a name a get the score: ";
+	while (cin >> name) {
+		indx = find_name(name, names);
+		if (indx == -1)
+			cout << "Error: name not found\n";
+		else
+			cout << name << "'s score is " << scores[indx] << '\n';
+		cout << "Type a name a get the score: ";
 	}
 	keep_window_open();
 }
