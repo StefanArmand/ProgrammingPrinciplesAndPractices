@@ -36,6 +36,19 @@ int find_name(string name, vector<string> names)
 	return indx;
 }
 
+int find_score(int score, vector<int> scores)
+{
+	int indx = -1;
+	size_t i = 0;
+
+	while ((indx == -1) && (i < scores.size())) {
+		if (scores[i] == score) indx = i;
+		++i;
+	}
+
+	return indx;
+}
+
 int main()
 {
 	cout << "Please write a name folowed by a score. Write NoName 0 to exit.\n";
@@ -61,14 +74,37 @@ int main()
 	}
 
 	int indx = 0;
-	cout << "Type a name a get the score: ";
-	while (cin >> name) {
-		indx = find_name(name, names);
-		if (indx == -1)
-			cout << "Error: name not found\n";
+	cout << "Type a name to get the score: ";
+	while (cin >> name){
+		if (name != "done") {
+			indx = find_name(name, names);
+			if (indx == -1)
+				cout << "Error: name not found\n";
+			else
+				cout << name << "'s score is " << scores[indx] << '\n';
+			cout << "Type a name a get the score or done to exit: ";
+		}
 		else
-			cout << name << "'s score is " << scores[indx] << '\n';
-		cout << "Type a name a get the score: ";
+		{
+			break;
+		}
 	}
+
+	cout << "Type a score to get the name: ";
+	while (cin >> score) {
+		if (score != 99) {
+			indx = find_score(score, scores);
+			if (indx == -1)
+				cout << "Error: score not found\n";
+			else
+				cout << score << "'s name is " << names[indx] << '\n';
+			cout << "Type a score a get the name or 99 to exit: ";
+		}
+		else
+		{
+			break;
+		}
+	}
+
 	keep_window_open();
 }
