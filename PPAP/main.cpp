@@ -72,6 +72,26 @@ int main()
 	cout << "switch-statement = a statement that switches between various results according to the mentioned cases \n";
 	cout << "vector = a string of values \n";
 	cout << "while-statemenet = a statement that continues to run while a certain condition is true \n";
+	cout << "argument error = a parameter specified badly \n";
+	cout << "assertion = something that must be true in that program \n";
+	cout << "catch = catch an exception \n";
+	cout << "compile-time error = error caught when compiling \n";
+	cout << "container = collections of data, like a vector \n";
+	cout << "debugging = finding bugs \n";
+	cout << "error = message that your program doesn't compile \n";
+	cout << "exception = an indication of what went wrong \n";
+	cout << "invariant = conditions that should always hold \n";
+	cout << "link-time error = error related to linked libraries \n";
+	cout << "logic error = error in judgement of the programmer \n";
+	cout << "post-condition = even if the pre condition is true, a check to see if the result is appropriate as well \n";
+	cout << "pre-condition = it must be true for a function to continue \n";
+	cout << "range error = if we misuse vectors \n";
+	cout << "requirement = a desired outcome of the program \n";
+	cout << "run time error = errors that appear at run time \n";
+	cout << "syntax error = error that appears because of bad writing of code \n";
+	cout << "testing = testing the rpgram to check for errors \n";
+	cout << "throw = throw an error if the assertion isn't true \n";
+	cout << "type error = if you put data that doesn't belong in the type \n";
 	cout << " \n";
 	cout << " \n";
 	cout << " \n";
@@ -87,6 +107,17 @@ int main()
 	cout << " \n";
 	cout << " \n";
 	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+	cout << " \n";
+
 	keep_window_open();
 	return 0;
 }
