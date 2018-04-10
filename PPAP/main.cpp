@@ -78,13 +78,14 @@ public:
 	void ignore(char c);
 };
 
-const char let = 'L';   // declaration token
+const char let = '#';   // declaration token
 const char quit = 'q';   // quit token
 const char print = ';';  // print token
 const char number = '8'; // number token
 const char name = 'a'; // name token
 const double k = 1000;
-const string sqrtkey = "sqrt";
+const char sqrtkey = 's';
+const char powkey = 'p';
 
 //read characters from cin and compose a token
 Token Token_stream::get()
@@ -102,7 +103,6 @@ Token Token_stream::get()
 	case '%':
 	case ';':
 	case '=':
-	case 'sqrt':
 		return Token(ch);  // let each character represent itself
 	case '.':   // a floating point literal can start with a dot
 	case '0':
@@ -128,6 +128,8 @@ Token Token_stream::get()
 			cin.unget();
 			if (s == "let") return Token(let);	//declaration keyword
 			if (s == "quit") return Token(name);  // quit keyword
+			if (s == "sqrt") return Token(sqrtkey); // sqrt keyword
+			if (s == "pow") return Token(powkey); // sqrt keyword
 			return Token(name,s);
 		}
 		error("Bad token");
@@ -165,6 +167,20 @@ double get_value(string s)
 	error("get: undefined name ",s);
 }
 
+double mypow(double first, int expo)
+{
+	if (expo == 0)  // if its raised to the 0 power
+	{ 
+		if (first == 0) return 0;
+		return 1;
+	}
+	double res = first; // for raising to the 1'st power
+	for (int i=2; i<=expo; i++)
+	{
+		res *= first;
+	}
+}
+
 void set_value(string s, double d)
 {
 	for (int i = 0; i<=names.size(); ++i)
@@ -184,7 +200,9 @@ bool is_declared(string s)
 
 Token_stream ts; // provides get() and putback()
 
+
 double expression();
+
 
 //deal with numbers, parantheses
 double primary()
@@ -196,6 +214,25 @@ double primary()
 		t = ts.get();
 		if (t.kind != ')') error("'(' expected");
 		return d;
+	}
+		case 's':
+	{
+		t = ts.get();
+		if (t.kind != '(') error("'(' expected");
+		double d = expression();
+		if (d<0) cout << "square root of negative number impossible\n";
+		//if (t.kind != ')') error("')' expected");
+		return sqrt(d);
+	}
+		case 'p':
+	{ 
+		t = ts.get();
+		if (t.kind != '(') error("'(' expected");
+		double d = expression();
+        if (t.kind != ',') error("',' expected");
+		int i = expression();
+        if (t.kind != number) error("second argument of 'pow' is not a number");
+		return mypow(d, i);
 	}
 	case '-':
 		return - primary();
@@ -248,7 +285,6 @@ double expression()
 			left -= term();
 			t = ts.get();
 			break;
-		case 'sqrt':
 		default:
 			ts.unget(t);
 			return left;
