@@ -83,6 +83,8 @@ const char quit = 'q';   // quit token
 const char print = ';';  // print token
 const char number = '8'; // number token
 const char name = 'a'; // name token
+const double k = 1000;
+const string sqrtkey = "sqrt";
 
 //read characters from cin and compose a token
 Token Token_stream::get()
@@ -100,6 +102,7 @@ Token Token_stream::get()
 	case '%':
 	case ';':
 	case '=':
+	case 'sqrt':
 		return Token(ch);  // let each character represent itself
 	case '.':   // a floating point literal can start with a dot
 	case '0':
@@ -211,7 +214,6 @@ double term()
  	double left = primary();
 	Token t = ts.get(); // get the next token from Token_stream
 	while(true) {
-		//Token t = ts.get();
 		switch(t.kind) {
 		case '*':
 			left *= primary();
@@ -237,18 +239,16 @@ double expression()
 	double left = term();
 	Token t = ts.get(); // get the next token from Token_stream
 	while(true) {
-		//Token t = ts.get();
 		switch(t.kind) {
 		case '+':
 			left += term();
 			t = ts.get();
-			if (t.kind == ';'){return left;
-			}
 			break;
 		case '-':
 			left -= term();
 			t = ts.get();
 			break;
+		case 'sqrt':
 		default:
 			ts.unget(t);
 			return left;
@@ -294,6 +294,7 @@ void clean_up_mess()
 const string prompt = "> ";
 const string result = "= "; // used to show the result
 
+//calculate gets the token stream, read each token and if it quits prints the result
 void calculate()
 {
 	while(cin) try {
@@ -310,6 +311,7 @@ void calculate()
 	}
 }
 
+//main just initiliazes the calculate function
 int main()
 
 	try {
