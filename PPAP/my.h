@@ -1,8 +1,3 @@
-#include "std_lib_facilies.h"
-#include <iostream>
-
-using namespace std;
-
-int main()
-{
-}
+extern int foo;
+void print_foo();
+void print(int);
