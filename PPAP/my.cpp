@@ -1,8 +1,9 @@
+#includes my.h
 #include "std_lib_facilies.h"
-#include <iostream>
 
-using namespace std;
-
-int main()
-{
+print_foo(){
+    cout << result << "\n";
+    print(int i){
+        cout << i << "\n";
+    }
 }
