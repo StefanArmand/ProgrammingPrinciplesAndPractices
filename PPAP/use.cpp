@@ -3,8 +3,9 @@
 
 using namespace std;
 
+int foo = 7;
+
 int main(){
-    int foo = 7;
     char cc = ' ';
     cin >> cc;
     print_foo(foo);
