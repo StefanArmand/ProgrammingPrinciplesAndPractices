@@ -1,9 +1,9 @@
 #includes my.h
 #include "std_lib_facilies.h"
 
-print_foo(){
+print_foo(int result){
     cout << result << "\n";
-    print(int i){
-        cout << i << "\n";
-    }
+}
+print(int i) {
+	cout << i << "\n";
 }
