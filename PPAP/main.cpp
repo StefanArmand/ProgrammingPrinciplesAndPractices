@@ -14,6 +14,8 @@ public:
 	void read_ages();
 	void print() const;
 	void sort();
+	const vector<string>& get_name() const { return name; }
+	const vector<double>& get_age() const { return age; }
 private:
 	vector<double> age;
 	vector<string> name;
@@ -77,6 +79,12 @@ void Name_pairs::sort() {
 
 }
 
+ostream& operator<<(ostream& os, const Name_pairs& np)
+{
+	for (int i = 0; i<np.get_name().size(); ++i)
+		os << '(' << np.get_name()[i] << ',' << np.get_age()[i] << ')' << endl;
+	return os;
+}
 
 int main()
 {
